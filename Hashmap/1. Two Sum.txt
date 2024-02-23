@@ -1,0 +1,13 @@
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        
+        while len(nums)>0:
+            ind = len(nums)-1
+            item = nums.pop()
+            if target-item in nums:
+                return [ nums.index(target-item),ind]
