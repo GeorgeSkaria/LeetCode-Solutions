@@ -1,0 +1,15 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        dic={}
+        for i,j in zip(s,t):
+            if i not in dic:
+                if j not in dic.values():
+                    dic[i]=j
+                else:
+                    return False
+            else:
+                if dic[i]!=j:
+                    return False
+        return True
+
+        
