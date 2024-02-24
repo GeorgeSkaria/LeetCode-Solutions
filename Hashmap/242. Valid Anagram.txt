@@ -1,0 +1,20 @@
+1//
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        for i in t:
+            if i in s:
+                s=s.replace(i,"",1)
+            else:
+                return False
+        if s=="":
+            return True
+        else:
+            return False
+        
+
+2//By Sorting   O(nlogn)
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+      s=sorted(s)
+      t=sorted(t)
+      return s==t
