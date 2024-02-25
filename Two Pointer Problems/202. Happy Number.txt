@@ -1,0 +1,31 @@
+class Solution:
+    def isHappy(self, n: int) -> bool:
+        #tortoise and hare algorithm
+        def squaredigits(a):
+            res=0
+            rem=0
+            while(a>0):
+                rem=a%10
+                res+=rem*rem
+                a=int(a/10)
+            return res
+        slow=n
+        fast=n
+        while True:
+            slow=squaredigits(slow)
+            fast=squaredigits(squaredigits(fast))
+            if slow==1 or fast==1:
+                return True
+            if slow==fast:
+                return False
+                
+
+        
+
+
+
+       
+           
+            
+
+        
