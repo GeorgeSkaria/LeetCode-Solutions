@@ -1,0 +1,21 @@
+#Set Lookup Complexity:
+
+Sets in Python are implemented using hash tables, which provide constant-time average case complexity for lookup operations.
+When you perform operations like in membership testing or use methods like add(), remove(), or discard() on a set, Python hashes the element to determine its potential index in the underlying array.
+
+#Solution
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        a=set(nums)
+        res=0
+        for n in nums:
+            if (n-1) not in a:
+                length=1
+                while(n+length) in a:
+                    length+=1
+                res=max(res,length)
+        return res
+
+
+        
+        
