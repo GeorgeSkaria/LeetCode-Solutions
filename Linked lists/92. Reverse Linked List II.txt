@@ -24,3 +24,20 @@ class Solution:
         prev.next.next=b
         prev.next=a
         return dummy.next
+
+
+
+#
+1)Traverse to the node just before the sublist to be reversed. This is done by iterating prev pointer left-1 times.
+
+2)Identify the start (a) and end (b) nodes of the sublist to be reversed.a is the node just before the sublist.b is the node following a.
+
+3)Reverse the sublist:
+
+4)Perform right-left iterations to reverse the sublist.
+ During each iteration, swap a.next and b.next pointers.
+ Adjust pointers to connect the reversed sublist back to the original list:
+
+5)Connect the node just before the sublist (prev.next) to the new head of the reversed sublist.
+ Connect the end of the reversed sublist to the node following the original end of the sublist.
+ Return the modified head of the linked list.
