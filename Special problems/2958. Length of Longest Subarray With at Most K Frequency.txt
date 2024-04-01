@@ -1,0 +1,19 @@
+1)Hash Table  2)Array  3)Sliding Window
+
+
+class Solution:
+    def maxSubarrayLength(self, nums: List[int], k: int) -> int:
+        a,b=0,0
+        d={}
+        l=len(nums)
+        res=0
+        while b<l:
+            d[nums[b]]=d.get(nums[b],0)+1
+            while(d[nums[b]]>k):
+                d[nums[a]]-=1
+                a+=1
+            res=max(res,b-a+1)
+            b+=1
+        return res
+
+        
