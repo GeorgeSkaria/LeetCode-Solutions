@@ -1,0 +1,80 @@
+class Node:
+  def __init__(self, data):
+    self.data = data
+    self.left = None
+    self.right = None
+
+class BinarySearchTree:
+  def __init__(self):
+    self.root = None
+
+  def insert(self, data):
+    if self.root is None:
+      self.root = Node(data)
+    else:
+      self._insert(data, self.root)
+
+  def _insert(self, data, node):
+    if data < node.data:
+      if node.left is None:
+        node.left = Node(data)
+      else:
+        self._insert(data, node.left)
+    else:
+      if node.right is None:
+        node.right = Node(data)
+      else:
+        self._insert(data, node.right)
+
+  def inorder(self, node):
+    if node is not None:
+      self.inorder(node.left)
+      print(node.data, end=" ")
+      self.inorder(node.right)
+
+
+
+  def delete(self, data):
+    if self.root is None:
+      return  # Tree is empty, nothing to delete
+
+    self.root = self._delete(data, self.root)
+    return
+
+  def _delete(self, data, node):
+    if node is None:
+      return node  # Node not found
+
+    # Search for the node to delete
+    if data < node.data:
+      node.left = self._delete(data, node.left)
+    elif data > node.data:
+      node.right = self._delete(data, node.right)
+    else:  # Node found
+
+      # Handle deletion based on node type (0, 1, or 2 children)
+      if node.left is None:
+        temp = node.right
+        node = None
+        return temp
+      elif node.right is None:
+        temp = node.left
+        node = None
+        return temp
+
+      # Node with two children: Find inorder successor (smallest in right subtree)
+      temp = self._min_value(node.right)
+
+      # Copy the inorder successor's value to the current node
+      node.data = temp.data
+
+      # Recursively delete the inorder successor (now it has at most one child)
+      node.right = self._delete(temp.data, node.right)
+
+    return node
+
+  def _min_value(self, node):
+    current = node
+    while current.left is not None:
+      current = current.left
+    return current
