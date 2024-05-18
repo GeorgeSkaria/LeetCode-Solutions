@@ -1,0 +1,29 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        res=[0]
+        def dfs(node):
+            if not node:
+                return -1
+            l=dfs(node.left)
+            r=dfs(node.right)
+            res[0]=max(res[0],2+l+r)
+            return 1+max(l,r)
+        dfs(root)
+        return res[0]
+
+    ''' In the provided code for finding the diameter of a binary tree,
+      res is used as a list containing a single integer ([0]) instead of a single integer variable.
+      Passing by Reference vs. Passing by Value:
+      In Python, functions receive arguments by reference (for mutable objects like lists) and by value (for immutable objects like integers). When you pass an integer to a function, any changes to that integer inside the function 
+      won't affect the original variable outside the function.
+
+      Here, if you used a single integer variable res and tried to update its value within the dfs function, the changes wouldn't be reflected in the res variable outside the function after the function call returns.  
+      By using a list [0], the code essentially creates a reference to a single element within the list.''' 
+            
+        
