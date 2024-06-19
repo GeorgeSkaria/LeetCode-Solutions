@@ -1,0 +1,29 @@
+1)class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        s=""
+        for d in digits:
+            s+=str(d)
+        s=str(int(s)+1)
+        res=[int(i) for i in s]
+        return res
+
+2)class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        if digits[-1]!=9:
+            digits[-1]+=1
+        else:
+            i=len(digits)-1
+            while(digits[i]==9 and i>-1):
+                digits[i]=0
+                i-=1
+            if(i==-1):
+                digits=[1]+digits
+            else:
+                digits[i]+=1
+        return digits
+
+
+
+        
+        
+        
