@@ -1,0 +1,14 @@
+>Using fixed size codes, we can reduce the size of the transmitting message (we should also pass the table for determining the codes assigned).
+
+>Using variable size codes(Huffman coding),
+
+ -Follows optimal merge pattern (merging files with smaller sizes first)
+ -Here, count of each character in the message is considered for merging accordingly
+ -After constructing merge tree, assign 0 to left edges and 1 to right edges.
+ -From root, assign code for each character.
+ -Results in assigning smaller codes for chars with higher frequency, hence reduces cost.
+ -Tree/Table should also be transmitted.
+
+   
+ 
+ 
