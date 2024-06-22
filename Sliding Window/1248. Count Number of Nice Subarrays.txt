@@ -1,0 +1,24 @@
+class Solution:
+    def numberOfSubarrays(self, nums: List[int], k: int) -> int:
+        l,count,d=len(nums),0,{}
+        for i in range(l):
+            if(nums[i]%2 != 0):
+                count+=1
+                d[count]=i
+        if(count<k):
+            return 0
+        vals=[-1]+list(d.values())+[l]
+        i,j=1,k
+        res=0
+        while(j<count+1):
+            cal1,cal2 = vals[i]-vals[i-1]-1,vals[j+1]-vals[j]-1
+            res+= 1+(cal1)+(cal2)+(cal1*cal2)
+            i,j=i+1,j+1
+        return res
+
+
+       
+
+
+
+        
