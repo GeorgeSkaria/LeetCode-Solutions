@@ -1,0 +1,25 @@
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        #Use Monotonic Dequeue(decreasing) for retrieving maximum element at the first index
+        res,a,b,l=[],0,0,len(nums)
+        q=collections.deque()
+        while(b<l):
+            while(q and nums[q[-1]]<=nums[b]):
+                q.pop()
+            q.append(b)
+
+            if a > q[0]:
+                q.popleft()
+            if b+1 >= k:
+                res.append(nums[q[0]])
+                a+=1
+            b+=1 
+        return res
+
+        
+Time complexity: O(n)
+		 Queue operations takes O(1) complexity only
+
+Space Complexity: O(k)
+		  The deque q stores indices, and its size is at most k (the window size). In the worst case, the deque might hold indices 
+		  for all elements if the input is sorted in descending order, in that window. 	
