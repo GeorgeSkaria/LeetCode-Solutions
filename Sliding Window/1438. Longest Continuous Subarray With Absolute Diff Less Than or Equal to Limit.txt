@@ -1,0 +1,25 @@
+class Solution:
+    def longestSubarray(self, nums: List[int], limit: int) -> int:
+        maxq,minq=collections.deque(),collections.deque()
+        l,a,b,res=len(nums),0,0,1
+        while(b<l):
+            while(maxq and nums[maxq[-1]]<=nums[b]):
+                maxq.pop()
+            maxq.append(b)
+            while(minq and nums[minq[-1]]>=nums[b]):
+                minq.pop()
+            minq.append(b)
+            if a>maxq[0]:
+                maxq.popleft()
+            if a>minq[0]:
+                minq.popleft()
+            if (nums[maxq[0]]-nums[minq[0]])<=limit:
+                    res=max(res,b-a+1)
+            else:
+                a+=1
+            b+=1
+        return res
+            
+
+
+This code defines a function that finds the longest subarray in a list, where the difference between the maximum and minimum elements within the subarray is less than or equal to the given limit. It utilizes two monotonic deques (maxq and minq) to efficiently track the maximum and minimum elements within the sliding window.
