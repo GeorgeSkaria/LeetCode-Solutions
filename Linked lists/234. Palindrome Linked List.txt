@@ -1,0 +1,41 @@
+>LENGTHY CODE (But takes only O(1) space)
+ REVERSING FROM MIDDLE ELEMENT, AND COMPARING TWO HALVES
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        def rev(root):
+            prev,cur,aft=None,root,root.next
+            while(aft is not None):
+                cur.next=prev
+                prev,cur=cur,aft
+                aft=aft.next
+            cur.next=prev
+            return cur
+        def middle(root):
+            slow,fast=root,root
+            while fast and fast.next:
+                slow=slow.next
+                fast=fast.next.next
+            return slow
+        def check(l1,l2):
+            while l2:
+                if l1.val != l2.val:
+                    return False
+                l1=l1.next
+                l2=l2.next
+            return True
+        if head.next is None:
+            return True
+        l2=rev(middle(head))
+        return check(head,l2)
+
+
+
+>USING STACK
+First push all data in stack, and then traverse linked list and keep popping element from stack one by one, so stack will give you elements in reverse order.
+
