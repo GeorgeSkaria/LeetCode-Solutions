@@ -16,7 +16,7 @@ class Solution:
         return sum(res)
 
         
-
+'''
 #Initialization:
 Calculate the length of ratings.
 If there's only one child, return 1 candy as it's the only child.
@@ -35,4 +35,4 @@ If the current child's rating is higher than the previous one, assign one more c
 Iterate through the ratings list in reverse order from the second last child to the first.
 For each child, compare its rating with the next child's rating.
 If the current child's rating is higher than the next one and has been assigned fewer or equal candies as the next child, assign one more candy than the next child.
-This pass ensures fairness by adjusting the number of candies for higher-rated children to the left of lower-rated ones.        
+This pass ensures fairness by adjusting the number of candies for higher-rated children to the left of lower-rated ones.        '''

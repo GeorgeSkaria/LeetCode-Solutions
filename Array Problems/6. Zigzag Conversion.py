@@ -33,7 +33,8 @@ class Solution:
 
     
         
-  >Initial Setup:
+'''
+ >Initial Setup:
 Create an empty list res to store characters of the ZigZag pattern.
 If numRows is greater than or equal to the length of the input string s, return s itself, as there won't be any ZigZag pattern to create.
 
@@ -54,4 +55,4 @@ Concatenate the remaining characters in l to res.
 Join the characters in res to form the final ZigZag pattern and return it.
 
 >The time complexity of the solution is O(n)
->The space complexity is also O(n) because additional space is used to store characters in res and l.
+>The space complexity is also O(n) because additional space is used to store characters in res and l.'''
