@@ -1,0 +1,15 @@
+class Solution:
+    def maximumImportance(self, n: int, roads: List[List[int]]) -> int:
+        degree=[0]*n
+        for i,j in roads:
+            degree[i]+=1
+            degree[j]+=1
+        degree.sort()
+        res=0
+        for i in range(n):
+            res+=degree[i]*(i+1)
+        return res
+            
+        
+            
+        
