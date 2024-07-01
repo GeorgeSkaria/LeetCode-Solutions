@@ -1,0 +1,12 @@
+class Solution:
+    def threeConsecutiveOdds(self, arr: List[int]) -> bool:
+        count,l=0,len(arr)
+        for i in range(l):
+            if arr[i]%2 != 0:
+                count+=1
+                if count==3:
+                    return True
+            else:
+                count=0
+        return False
+        
