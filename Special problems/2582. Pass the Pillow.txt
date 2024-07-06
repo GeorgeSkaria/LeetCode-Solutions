@@ -1,0 +1,15 @@
+class Solution:
+    def passThePillow(self, n: int, time: int) -> int:
+        dirc,res=1,1
+        for i in range(1,time+1):
+            res+=dirc
+            if res==1 or res==n:
+                dirc*=-1
+        return res
+
+
+
+
+
+
+        
