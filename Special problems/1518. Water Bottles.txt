@@ -1,0 +1,11 @@
+class Solution:
+    def numWaterBottles(self, numBottles: int, numExchange: int) -> int:
+        res=empty=numBottles
+        while(empty>=numExchange):
+            a=empty//numExchange
+            res+=a
+            empty=a + empty%numExchange
+        return res
+            
+
+        
