@@ -1,0 +1,34 @@
+class Solution:
+    def maximumGain(self, s: str, x: int, y: int) -> int:
+        stack,stack2,xcount,ycount=[],[],0,0
+        if(x>y):
+            for i in s:
+                if stack and stack[-1]=='a' and i=='b':
+                    xcount+=1
+                    stack.pop()
+                else:
+                    stack.append(i)
+            for i in stack:
+                if stack2 and stack2[-1]=='b' and i=='a':
+                    ycount+=1
+                    stack2.pop()
+                else:
+                    stack2.append(i)
+            return xcount*x + ycount*y
+        else:
+            for i in s:
+                if stack and stack[-1]=='b' and i=='a':
+                    ycount+=1
+                    stack.pop()
+                else:
+                    stack.append(i)
+            for i in stack:
+                if stack2 and stack2[-1]=='a' and i=='b':
+                    xcount+=1
+                    stack2.pop()
+                else:
+                    stack2.append(i)
+            return xcount*x + ycount*y
+
+
+        
