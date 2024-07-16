@@ -1,0 +1,44 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def getDirections(self, root: Optional[TreeNode], startValue: int, destValue: int) -> str:
+        path1,path2=[],[]
+        def dfs(node,target,path):
+            if not node:
+                return False
+            if node.val==target:
+                return path
+            path.append('L')
+            res= dfs(node.left,target,path)
+            if res:return res
+            path.pop()
+            path.append('R')   
+            res=dfs(node.right,target,path)
+            if res:return res
+            path.pop()
+
+        path1=dfs(root,startValue,path1)
+        path2=dfs(root,destValue,path2)
+        
+        result,i,j,l1,l2=[],0,0,len(path1),len(path2)
+        while i<l1 and j<l2 and path1[i]==path2[j]:
+            i+=1
+            j+=1
+        while i<l1:
+            result.append('U')
+            i+=1
+        while j<l2:
+            result.append(path2[j])
+            j+=1
+        return ''.join(result)
+
+            
+'''The code calculates the paths to two given nodes
+ in a binary tree and then finds their lowest common ancestor (LCA)
+  by comparing the paths. It returns a string representing the path
+   from the startValue to the destValue through the LCA.'''
+            
