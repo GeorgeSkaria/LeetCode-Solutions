@@ -1,0 +1,25 @@
+class Solution:
+    def luckyNumbers (self, matrix: List[List[int]]) -> List[int]:
+        r,c=len(matrix),len(matrix[0])
+        arr1,arr2=[],[]
+        for i in range(r):
+            minindex=0
+            for j in range(c):
+                if(matrix[i][j]<matrix[i][minindex]):
+                    minindex=j
+            arr1.append(matrix[i][minindex])
+
+        for i in range(c):
+            maxindex=0
+            for j in range(r):
+                if(matrix[j][i]>matrix[maxindex][i]):
+                    maxindex=j
+            arr2.append(matrix[maxindex][i])
+        res,arr2=[],set(arr2)
+        for i in arr1:
+            if i in arr2:
+                res.append(i)
+        return res
+
+
+        
