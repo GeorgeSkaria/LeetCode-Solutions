@@ -1,0 +1,8 @@
+#HASTY APPROACH
+
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        l=list(range(1,n+1))
+        import itertools
+        p=itertools.combinations(l,k) 
+        return p

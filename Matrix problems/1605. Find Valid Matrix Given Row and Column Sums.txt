@@ -1,0 +1,12 @@
+class Solution:
+    def restoreMatrix(self, rowSum: List[int], colSum: List[int]) -> List[List[int]]:
+        r,c=len(rowSum),len(colSum)
+        matrix=[[0]*c for i in range(r)]
+        
+        for i in range(r):
+            for j in range(c):
+                ele=min(rowSum[i],colSum[j])
+                matrix[i][j]=ele
+                rowSum[i]-=ele
+                colSum[j]-=ele
+        return matrix
