@@ -1,0 +1,13 @@
+class Solution:
+    def sortPeople(self, names: List[str], heights: List[int]) -> List[str]:
+        d,res,l={},[],len(names)
+        for i in range(l):
+            d[heights[i]]=names[i]
+        heights.sort()
+        for i in range(l-1,-1,-1):
+            res.append(d[heights[i]])
+        return res
+
+
+
+        

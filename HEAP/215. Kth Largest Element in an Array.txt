@@ -29,4 +29,7 @@ class Solution:
                 return nums[p]
         return Quickselect(0,len(nums)-1)
 
+
+> If you pick a static pivot, it has a possible worst case. To fix this, instead of picking the rightmost pivot, just pick a random pivot between l and r and then swap that with the right most pivot. 
+
         

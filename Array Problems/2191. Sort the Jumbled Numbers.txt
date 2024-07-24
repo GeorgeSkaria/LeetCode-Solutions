@@ -1,0 +1,20 @@
+class Solution:
+    def sortJumbled(self, mapping: List[int], nums: List[int]) -> List[int]:
+        d,l={},len(mapping)
+        for i in range(l):
+            d={i:mapping[i] for i in range(l)}
+
+        def convert(i):
+            res=''
+            for ele in str(i):
+                res+=str(d[int(ele)])
+            return int(res)
+
+        return sorted(nums,key=lambda x:convert(x))
+        
+        
+
+        
+
+
+        #The sorted function is stable, ensuring that the relative order of numbers that map to the same value is preserved.
