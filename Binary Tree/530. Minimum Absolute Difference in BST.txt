@@ -1,0 +1,46 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
+        arr=[]
+        def inorder(node):
+            if not node:
+                return None
+            inorder(node.left)
+            arr.append(node.val)
+            inorder(node.right)
+        inorder(root)
+        res=arr[1]-arr[0]
+        for i in range(2,len(arr)):
+            res=min(res,arr[i]-arr[i-1])
+        return res
+
+
+>>Code with better space complexity
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
+        def inorder(node):
+            if not node:
+                return None
+            inorder(node.left)
+            res[0]=min(res[0],node.val-prev[0])
+            prev[0]=node.val
+            inorder(node.right)
+        prev,res=[float('-inf')],[float('inf')]
+        inorder(root)
+        return res[0]
+
+
+
+         
