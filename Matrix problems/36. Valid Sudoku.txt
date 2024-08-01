@@ -1,0 +1,35 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        
+        for i in range(9):
+            rowhash=set()
+            for j in range(9):
+                if board[i][j] != '.':
+                    if board[i][j] in rowhash:
+                        return False
+                    rowhash.add(board[i][j])
+        for i in range(9):
+            colhash=set()
+            for j in range(9):
+                if board[j][i] != '.':
+                    if board[j][i] in colhash:
+                        return False
+                    colhash.add(board[j][i])
+
+        subgrid={(0,0):set(),(0,1):set(),(0,2):set(),(1,0):set(),(1,1):set(),(1,2):set(),(2,0):set(),(2,1):set(),(2,2):set()}
+	#subgrid=collections.defaultdict(set)
+        
+        for i in range(9):
+            for j in range(9):
+                if board[i][j] != '.':
+                    k,l=i//3,j//3
+                    if board[i][j] in subgrid[(k,l)]:
+                        return False
+                    subgrid[(k,l)].add(board[i][j])
+        return True
+                
+        
+
+
+
+        

@@ -1,0 +1,32 @@
+class Solution:
+    def findTheCity(self, n: int, edges: List[List[int]], distanceThreshold: int) -> int:
+        matrix=[[float('inf')]*n  for _ in range(n)]
+        d={}
+
+        for i in range(n):
+            matrix[i][i]=0
+        
+        for i,j,k in edges:
+            matrix[i][j]=k
+            matrix[j][i]=k
+        
+        for k in range(n):
+            for i in range(n):
+                for j in range(n):
+                    matrix[i][j]=min(matrix[i][j],matrix[i][k]+matrix[k][j])
+                
+        for i in range(n):
+            count=0
+            for j in range(n):
+                if matrix[i][j]<=distanceThreshold and i!=j:
+                    count+=1
+            d[i]=count
+        minindex=0
+        for i in d:
+            if d[minindex]>=d[i]:
+                minindex=i
+        return minindex
+        
+
+
+        

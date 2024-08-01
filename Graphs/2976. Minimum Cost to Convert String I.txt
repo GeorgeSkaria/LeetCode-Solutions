@@ -1,0 +1,25 @@
+from typing import List
+from collections import defaultdict
+
+class Solution:
+    def minimumCost(self, source: str, target: str, original: List[str], changed: List[str], cost: List[int]) -> int:
+        matrix = [[float('inf')] * 26 for _ in range(26)]
+        for i in range(26):
+            matrix[i][i] = 0
+
+        for i,j,k in zip(original,changed,cost):
+            matrix[ord(i)-97][ord(j)-97]=min(matrix[ord(i)-97][ord(j)-97],k)
+        
+        for k in range(26):
+            for i in range(26):
+                for j in range(26):
+                        matrix[i][j] = min(matrix[i][j] , matrix[i][k] + matrix[k][j])
+
+        res = 0
+        for i, j in zip(source, target):
+            if i != j:
+                temp = matrix[ord(i)-97][ord(j)-97]
+                if temp == float('inf'):
+                    return -1
+                res += temp
+        return res
