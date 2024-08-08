@@ -1,0 +1,14 @@
+  #Function to return a list containing the DFS traversal of the graph.
+
+  #Input is the number of vertices and an adjacency list with value at each index denoting the neighbouring vertices 
+    def dfsOfGraph(self, V, adj):
+        res=[]
+        visited=set()
+        def dfs(a):
+            res.append(a)
+            visited.add(a)
+            for i in adj[a]:
+                if i not in visited:
+                    dfs(i)
+        dfs(0)
+        return res
