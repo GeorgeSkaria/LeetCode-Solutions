@@ -9,7 +9,7 @@
  
  Element first inserted as last element of the array.
  Adjust it by comparing with the parent.
- As minimum height of CBT is log N, worst time complexity for the operation is O(log n) and    best is O(1).
+ As minimum height of CBT is log N, worst time complexity for the operation is O(log n) and best is O(1).
 
 >DELETION
  
