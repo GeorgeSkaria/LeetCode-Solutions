@@ -23,3 +23,11 @@ class Solution:
             if has_cycle(i):
                 return False        
         return True
+
+
+
+
+#State Tracking:
+0: The course has not been visited.
+1: The course is currently being visited (i.e., in the call stack).
+2: The course and its dependencies have been fully processed.
