@@ -1,0 +1,43 @@
+class Solution:
+    def minDays(self, grid: List[List[int]]) -> int:
+        r,c=len(grid),len(grid[0])
+
+        def dfs(i,j,land):
+            land.add((i,j))
+            q=collections.deque()
+            q.append((i,j))
+            coord=[(0,1),(0,-1),(1,0),(-1,0)]
+
+            while q:
+                row,col=q.pop()
+                for x,y in coord:
+                    if -1<x+row<r and -1<y+col<c and (x+row,y+col) not in land and grid[x+row][y+col]==1:
+                        land.add((x+row,y+col))
+                        q.append((x+row,y+col))
+
+        def count_island():
+            land,res=set(),0
+            for i in range(r):
+                for j in range(c):
+                    if (i,j) not in land and grid[i][j]==1:
+                        dfs(i,j,land)
+                        res+=1
+            return res
+        if count_island()!=1:
+            return 0
+                
+
+        for i in range(r):
+            for j in range(c):
+                if not grid[i][j]:
+                    continue
+                grid[i][j]=0
+                if count_island()!=1:
+                    return 1
+                grid[i][j]=1
+        return 2
+            
+                    
+        
+            
+            
