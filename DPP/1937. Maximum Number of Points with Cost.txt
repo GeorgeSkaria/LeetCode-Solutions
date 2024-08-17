@@ -1,0 +1,24 @@
+>O(r X c*2)
+
+class Solution:
+    def maxPoints(self, points: List[List[int]]) -> int:
+        r,c = len(points), len(points[0])
+        dp = [[float('inf') for _ in range(c)] for _ in range(r)]
+    
+        for i in range(c):
+            dp[0][i] = points[0][i]
+
+        def maxval(row,col,r,c):
+            val=0
+            for i in range(c):
+                val = max(val, points[row][col] + dp[row-1][i] - abs(col-i))
+            dp[row][col]=val
+
+        
+        for i in range(1,r):
+            for j in range(c):
+                maxval(i,j,r,c)
+        print(dp)
+        return max(dp[-1])
+        
+           
