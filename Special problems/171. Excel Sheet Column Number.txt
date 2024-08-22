@@ -1,0 +1,11 @@
+class Solution:
+    def titleToNumber(self, columnTitle: str) -> int:
+        i,res = 0,0
+        
+        for ele in columnTitle[::-1]:
+            val = ord(ele)-64
+            res += (26**i) * val
+            i += 1
+        return res
+
+        

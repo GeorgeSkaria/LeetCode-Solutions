@@ -1,0 +1,25 @@
+class Solution:
+    def minDepth(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        res=1
+        q=collections.deque([root])
+
+        while q:
+            l=len(q)
+            for _ in range(l):
+                a=q.popleft()
+                if not a.left and not a.right:
+                    return res
+                if a.left:
+                    q.append(a.left)
+                if a.right:
+                    q.append(a.right)
+            res+=1
+        return res
+                
+
+            
+            
+
+        

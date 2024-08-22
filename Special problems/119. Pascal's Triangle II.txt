@@ -1,0 +1,16 @@
+class Solution:
+    def getRow(self, rowIndex: int) -> List[int]:
+        ref=[1,2,1]
+        if rowIndex==0:
+            return [1]
+        if rowIndex==1:
+            return [1,1]
+        for _ in range(rowIndex-2):
+            l=[]
+            for j in range(len(ref)-1):
+                l.append(ref[j]+ref[j+1])
+            ref=[1]+l+[1]
+        return ref
+        
+
+        

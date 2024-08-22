@@ -1,0 +1,20 @@
+class Solution:
+    def nthUglyNumber(self, n: int) -> int:
+        h=[1]
+        s,i=set(),0
+
+        while(i<n-1):
+            small=heapq.heappop(h) 
+            a,b,c=small*2,small*3,small*5
+            if a not in s:
+                s.add(a)       
+                heapq.heappush(h,a)
+            if b not in s:
+                s.add(b)       
+                heapq.heappush(h,b)
+            if c not in s:
+                s.add(c)       
+                heapq.heappush(h,c)
+            i+=1
+        
+        return heapq.heappop(h)
