@@ -1,0 +1,30 @@
+class Solution:
+    def countSubIslands(self, grid1: List[List[int]], grid2: List[List[int]]) -> int:
+        r,c = len(grid1),len(grid1[0])
+        visited = set()
+        res = 0
+
+        def dfs(i,j):
+            stack = [(i,j)]
+            visited.add((i,j))
+            is_sub = True
+
+            while stack:
+                a,b = stack.pop()
+                if grid1[a][b] != 1:
+                    is_sub = False
+
+                for x,y in [(0,1),(0,-1),(1,0),(-1,0)]:
+                    if 0<=x+a<r and 0<=y+b<c and (x+a,y+b) not in visited and grid2[x+a][y+b]==1:
+                        visited.add((x+a,y+b))
+                        stack.append((x+a,y+b))
+            return is_sub
+
+
+        for i in range(r):
+            for j in range(c):
+                if grid2[i][j]==1 and (i,j) not in visited:
+                    if dfs(i,j):
+                        res += 1
+        return res
+        
