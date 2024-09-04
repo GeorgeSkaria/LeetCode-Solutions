@@ -1,0 +1,18 @@
+class Solution:
+    def maxVowels(self, s: str, k: int) -> int:
+        hash = {'a','e','i','o','u'}
+        a,b = 0,0
+        res,count = 0,0
+        while (b < len(s)):
+            if s[b] in hash:
+                count += 1
+            if b-a+1 == k:
+                res = max(res,count)
+                if s[a] in hash:
+                    count -= 1
+                a += 1
+            b += 1
+        return res
+            
+
+        

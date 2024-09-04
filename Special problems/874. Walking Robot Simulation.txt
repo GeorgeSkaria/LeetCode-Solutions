@@ -1,0 +1,21 @@
+class Solution:
+    def robotSim(self, commands: List[int], obstacles: List[List[int]]) -> int:
+        x,y =0,0
+        res,i = 0,0
+
+        obs = set(map(tuple,obstacles))
+        dir = [(0,1),(1,0),(0,-1),(-1,0)]
+
+        for j in commands:
+            if j==-1:
+                i=(i + 1) % 4
+            if j==-2:
+                i=(i - 1) % 4
+            else:
+                for _ in range(j):
+                    newx,newy = x + dir[i][0],y + dir[i][1]
+                    if (newx,newy) in obs:
+                        break
+                    x,y = newx,newy
+                res = max(res,x**2 + y**2)
+        return res
