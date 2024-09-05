@@ -1,0 +1,14 @@
+class Solution:
+    def missingRolls(self, rolls: List[int], mean: int, n: int) -> List[int]:
+        m = len(rolls)
+        required = (m+n)*mean - sum(rolls)
+        if required < n or required > n*6:
+            return []
+        res = [required // n] * n
+        rem = required % n
+        for i in range(rem):
+            res[i]+=1
+        return res 
+
+
+        
