@@ -1,0 +1,21 @@
+class Solution:
+    def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
+        nums = set(nums)
+    
+        ptr = head
+        while ptr is not None:
+            if ptr.val not in nums:
+                head = ptr
+                break
+            ptr = ptr.next
+        
+        a,b = head,head.next
+        while b is not None:
+            if b.val in nums:
+                a.next = b.next
+            else:
+                a = a.next
+            b = b.next
+        return head
+
+        
