@@ -1,0 +1,33 @@
+class Solution:
+    def spiralMatrix(self, m: int, n: int, head: Optional[ListNode]) -> List[List[int]]:
+        mat = [[-1 for _ in range(n)] for _ in range(m)]
+        t,b,l,r = 0,m,0,n
+        ptr = head
+
+        while(l<=r and t<=b):
+            for i in range(l,r):
+                mat[t][i] = ptr.val
+                if not ptr.next:
+                    return mat
+                ptr = ptr.next
+            t += 1
+            for i in range(t,b):
+                mat[i][r-1] = ptr.val
+                if not ptr.next:
+                    return mat
+                ptr = ptr.next
+            r -= 1
+            for i in range(r-1,l-1,-1):
+                mat[b-1][i] = ptr.val
+                if not ptr.next:
+                    return mat
+                ptr = ptr.next
+            b -= 1
+            for i in range(b-1,t-1,-1):
+                mat[i][l] = ptr.val
+                if not ptr.next:
+                    return mat
+                ptr = ptr.next
+            l += 1
+        return mat
+            
