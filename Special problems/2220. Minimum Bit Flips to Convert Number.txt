@@ -1,0 +1,23 @@
+class Solution:
+    def minBitFlips(self, start: int, goal: int) -> int:
+        l1,l2 = [],[]
+        def binary(num,l):
+            while(num > 0):
+                l.append(num % 2)
+                num //= 2
+        binary(start,l1)
+        binary(goal,l2)
+
+        len1,len2 = len(l1),len(l2)
+        if len1>len2:
+            l2.extend([0]*(len1-len2))
+        elif len2>len1:
+            l1.extend([0]*(len2-len1))
+
+        res = 0
+        for i,j in zip(l1,l2):
+            if i != j: #can use xor operation too
+                res += 1
+        return res
+
+        
