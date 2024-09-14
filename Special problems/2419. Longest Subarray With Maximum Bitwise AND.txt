@@ -1,0 +1,12 @@
+class Solution:
+    def longestSubarray(self, nums: List[int]) -> int:
+        m = max(nums)
+        res,c = 0,0 
+        for i in nums:
+            if i==m:
+                c += 1
+            else:
+                res = max(res,c)
+                c = 0
+        return max(res,c)
+        

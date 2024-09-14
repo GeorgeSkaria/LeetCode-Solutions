@@ -1,0 +1,19 @@
+class Solution:
+    def equalPairs(self, grid: List[List[int]]) -> int:
+        d,res = defaultdict(list),0
+        r,c = len(grid),len(grid[0])
+        for i in range(c):
+            for j in range(r):
+                d[i].append(grid[j][i])
+        
+        for i in range(r):
+            l = []
+            for j in range(c):
+                l.append(grid[i][j])
+            for k in range(c):
+                if d[k]==l:
+                    res += 1
+        return res
+
+
+        
