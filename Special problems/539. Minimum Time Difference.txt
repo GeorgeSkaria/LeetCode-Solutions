@@ -1,0 +1,15 @@
+class Solution:
+    def findMinDifference(self, timePoints: List[str]) -> int:
+        def tomin(hour):
+            l = hour.split(':')
+            return int(l[0])*60 + int(l[1])
+        
+        timePoints = sorted([tomin(i) for i in timePoints])
+        res = float('inf')
+
+        for i in range(1,len(timePoints)):
+            res = min(res,timePoints[i] - timePoints[i-1])
+        return min(res,1440 + timePoints[0] - timePoints[-1])
+    
+
+    
