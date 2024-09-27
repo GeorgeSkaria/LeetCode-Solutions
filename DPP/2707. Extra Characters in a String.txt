@@ -1,0 +1,14 @@
+class Solution:
+    def minExtraChar(self, s: str, dictionary: List[str]) -> int:
+        dp = [0] * (len(s)+1)
+        dictionary = set(dictionary)
+
+        for i in range(1,len(s)+1):
+            dp[i] = dp[i-1] + 1
+
+            for j in range(i):
+                if s[j:i] in dictionary:
+                    dp[i] = min(dp[i],dp[j])
+        return dp[-1]
+
+        

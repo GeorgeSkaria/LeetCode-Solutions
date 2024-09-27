@@ -1,0 +1,42 @@
+1) O(n) memory: Stack
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        stack,res = [],0
+        a,b = head,head
+        while b and b.next:
+            stack.append(a.val)
+            a = a.next
+            b = b.next.next
+        while a:
+            res = max(res, stack.pop() + a.val)
+            a = a.next
+        return res
+
+
+2) O(1) memory
+
+class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        prev,res = None,0
+        a,b = head,head
+        while b and b.next:
+            b = b.next.next
+            temp = a.next
+            a.next = prev
+            prev = a
+            a = temp
+        while a:
+            res = max(res, prev.val + a.val)
+            a = a.next
+            prev = prev.next
+        return res
+
+        
+
+        
