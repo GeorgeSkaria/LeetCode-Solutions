@@ -1,0 +1,14 @@
+class Solution:
+    def dividePlayers(self, skill: List[int]) -> int:
+        skill.sort()
+        res = 0
+        a,b = 0,len(skill)-1
+        val = skill[a] + skill[b]
+        while a<b:
+            if (skill[a]+skill[b]) == val:
+                res += (skill[a] * skill[b])
+                a += 1
+                b -= 1
+            else:
+                return -1  
+        return res      
