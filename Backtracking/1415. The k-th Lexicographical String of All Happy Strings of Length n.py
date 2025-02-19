@@ -5,20 +5,27 @@ A happy string is a string consisting of 'a', 'b', and 'c' where no two adjacent
 
 class Solution:
     # Backtracking Solution
-    def getHappyString_backtrack(self, n: int, k: int) -> str:
-        res = []
+    def getHappyString(self, n: int, k: int) -> str:
         letters = ['a', 'b', 'c']
+        k = [k]
+        result = [""]
 
         def backtrack(s):
             if len(s) == n:
-                res.append(s)
+                k[0] -= 1
+                if k[0] == 0:
+                    result[0] = s
                 return
+
             for letter in letters:
                 if not s or s[-1] != letter:
                     backtrack(s + letter)
-
+                    if k[0] == 0:  # Stop recursion early if result is found
+                        return
+        
         backtrack("")
-        return res[k-1] if len(res) >= k else ""
+        return result[0] if result[0] else ""
+
 
     # Iterative Optimized Solution
     def getHappyString_iterative(self, n: int, k: int) -> str:
