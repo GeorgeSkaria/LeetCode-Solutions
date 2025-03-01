@@ -1,19 +1,13 @@
 class Solution:
     def applyOperations(self, nums: List[int]) -> List[int]:
-        stack = [nums[0]]
-
-        for i in range(1,len(nums)):
-            if nums[i] == stack[-1]:
-                stack[-1] *= 2
-                nums[i] = 0
-            stack.append(nums[i])
-
-        i,j = 0,1
-        while (j < len(nums)):
-            if stack[i] != 0:
+        for i in range(len(nums) - 1):
+            if nums[i] == nums[i + 1]:
+                nums[i] *= 2
+                nums[i + 1] = 0
+        i = 0
+        for j in range(len(nums)):
+            if nums[j] != 0:
+                nums[i], nums[j] = nums[j], nums[i]
                 i += 1
-            if stack[j] != 0:
-                stack[i],stack[j] = stack[j],stack[i]
-            j += 1
-        return stack
         
+        return nums
